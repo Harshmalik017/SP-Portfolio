@@ -1,0 +1,7 @@
+*.ts linguist-language=TypeScript linguist-detectable=true
+*.tsx linguist-language=TypeScript linguist-detectable=true
+*.css linguist-language=CSS linguist-detectable=true
+*.md linguist-vendored
+*.mjs linguist-vendored
+package-lock.json linguist-generated
+public/*.pdf linguist-vendored
