@@ -1,32 +1,21 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import Contact from './Contact';
+import Brand from './Brand';
 import { profile } from '../data/resume';
-
-const footerLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/expertise', label: 'Expertise' },
-  { href: '/impact', label: 'Impact' },
-  { href: '/education', label: 'Education' },
-  { href: '/contact', label: 'Contact' },
-];
+import { navigationLinks } from '../lib/navigation';
 
 export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="site-width footer-main">
         <div className="footer-intro">
-          <Link href="/" className="footer-brand">
-            <Image src="/images/sp-mark.svg" alt="" width={58} height={58} />
-            <div><strong>Sumit Kumar Pandey</strong><span>Public Health Strategist</span></div>
-          </Link>
+          <Brand footer />
           <p>Strengthening health systems, quality of care, and public health programs through evidence, partnerships, and practical delivery.</p>
         </div>
         <nav className="footer-nav" aria-label="Footer navigation">
           <p className="footer-label">Explore</p>
-          {footerLinks.map(link => <Link key={link.href} href={link.href}>{link.label}</Link>)}
+          {navigationLinks.map(({ href, label }) => <Link key={href} href={href}>{label}</Link>)}
         </nav>
         <div className="footer-contact">
           <p className="footer-label">Connect</p>

@@ -1,18 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Download, Menu, X, Sun, Moon } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-const links = [
-  ['/', 'Home'],
-  ['/experience', 'Experience'],
-  ['/expertise', 'Expertise'],
-  ['/impact', 'Impact'],
-  ['/education', 'Education'],
-  ['/contact', 'Contact'],
-] as const;
+import { navigationLinks } from '../lib/navigation';
+import Brand from './Brand';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -33,12 +25,9 @@ export default function Nav() {
   return (
     <header className="nav">
       <div className="nav-in">
-        <Link href="/" className="brand" aria-label="Sumit Kumar Pandey — home">
-          <Image src="/images/sp-mark.svg" alt="" width={46} height={46} priority />
-          <span>Sumit Pandey<small>Public health · Systems · Quality</small></span>
-        </Link>
+        <Brand />
         <nav id="primary-navigation" className={open ? 'links open' : 'links'} aria-label="Primary">
-          {links.map(([href, label]) => <Link key={href} href={href} className={pathname === href ? 'on' : ''} aria-current={pathname === href ? 'page' : undefined}>{label}</Link>)}
+          {navigationLinks.map(({ href, label }) => <Link key={href} href={href} className={pathname === href ? 'on' : ''} aria-current={pathname === href ? 'page' : undefined}>{label}</Link>)}
         </nav>
         <div className="nav-r">
           <a className="nav-cv" href="/Sumit_Kumar_Pandey_CV.pdf" download aria-label="Download resume PDF"><Download size={15} aria-hidden="true" /> <span>Resume</span></a>

@@ -2,14 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Briefcase, Download, GraduationCap, HeartPulse, Sparkles, Trophy, Wrench } from 'lucide-react';
 import Carousel from '../components/Carousel';
-import Counter from '../components/Counter';
+import { CaseStudyCard, ExpertiseCard, MetricCard, StatCard } from '../components/PortfolioCards';
+import SectionHeading from '../components/SectionHeading';
+import SkillCloud from '../components/SkillCloud';
 import { expertise, experience, metrics, cases, profile, education, skills } from '../data/resume';
 
 const statCards = [
-  { className: 'card-blue', icon: Briefcase },
-  { className: 'card-mint', icon: HeartPulse },
-  { className: 'card-violet', icon: Trophy },
-  { className: 'card-orange', icon: Sparkles },
+  Briefcase,
+  HeartPulse,
+  Trophy,
+  Sparkles,
 ];
 const featuredStats = [
   { value: '10+', label: 'Years of experience' },
@@ -36,10 +38,7 @@ export default function Home() {
       </section>
 
       <section className="stats-grid" aria-label="Career highlights">
-        {featuredStats.map((stat, index) => {
-          const Icon = statCards[index].icon;
-          return <article className={`stat-card ${statCards[index].className}`} key={stat.label}><Icon size={22} /><strong>{stat.value}</strong><span>{stat.label}</span></article>;
-        })}
+        {featuredStats.map((stat, index) => <StatCard {...stat} icon={statCards[index]} index={index} key={stat.label} />)}
       </section>
 
       <section className="currently-card glass-card">
@@ -49,21 +48,21 @@ export default function Home() {
       </section>
 
       <section className="home-section">
-        <div className="section-title"><div><p className="section-kicker"><Wrench size={16} /> Core capabilities</p><h2>Expertise that moves health systems forward</h2></div><Link href="/expertise" className="text-link">All expertise <ArrowRight size={15} /></Link></div>
+        <SectionHeading icon={Wrench} eyebrow="Core capabilities" title="Expertise that moves health systems forward" action={<Link href="/expertise" className="text-link">All expertise <ArrowRight size={15} /></Link>} />
         <Carousel label="Expertise areas">
           {expertise.slice(0, 6).map(([Icon, title, description], index) => (
-            <Link href="/expertise" className={`feature-card color-${index + 1}`} key={title}><span className="feature-icon"><Icon size={23} /></span><h3>{title}</h3><p>{description}</p><span className="card-arrow"><ArrowRight size={17} /></span></Link>
+            <ExpertiseCard icon={Icon} title={title} description={description} index={index} key={title} />
           ))}
         </Carousel>
       </section>
 
       <section className="home-section">
-        <div className="section-title"><div><p className="section-kicker"><Trophy size={16} /> Measurable outcomes</p><h2>Impact beyond the dashboard</h2></div><Link href="/impact" className="text-link">Explore all impact <ArrowRight size={15} /></Link></div>
+        <SectionHeading icon={Trophy} eyebrow="Measurable outcomes" title="Impact beyond the dashboard" action={<Link href="/impact" className="text-link">Explore all impact <ArrowRight size={15} /></Link>} />
         <div className="impact-preview">
-          {metrics.slice(0, 4).map((metric, index) => <article className={`impact-card glass-card impact-${index + 1}`} key={metric.label}><p>{metric.from != null ? `From ${metric.from.toLocaleString('en-US')}${metric.suffix || ''}` : 'At a glance'}</p><strong><Counter to={metric.to} from={metric.from} suffix={metric.suffix} /></strong><h3>{metric.label}</h3></article>)}
+          {metrics.slice(0, 4).map((metric, index) => <MetricCard metric={metric} index={index} preview key={metric.label} />)}
         </div>
         <Carousel label="Featured case studies">
-          {cases.map(({ icon: Icon, ...item }, index) => <article className={`case-preview color-${index + 1}`} key={item.title}><Icon size={24} /><p>Case study 0{index + 1}</p><h3>{item.title}</h3><span>{item.result}</span><Link href="/impact">View case study <ArrowRight size={15} /></Link></article>)}
+          {cases.map((item, index) => <CaseStudyCard item={item} index={index} key={item.title} />)}
         </Carousel>
       </section>
 
@@ -75,7 +74,7 @@ export default function Home() {
         </section>
         <section className="glass-card compact-card">
           <div className="compact-heading"><span className="card-icon icon-mint"><Sparkles size={21} /></span><div><p>Toolkit</p><h2>Skills, languages &amp; methods</h2></div></div>
-          <div className="skill-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+          <SkillCloud items={skills} />
           <Link href="/expertise" className="text-link">See how I use these skills <ArrowRight size={15} /></Link>
         </section>
       </div>

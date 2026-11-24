@@ -10,7 +10,7 @@ export const profile = {
   summary: 'Public health strategist and health-systems consultant with 10+ years leading facility- and state-level health system strengthening, quality-of-care, and maternal-newborn health (MNH)/NCD initiatives across government-embedded Technical Support Units (NHM, USAID, BMGF). Proven track record of institutionalizing clinical governance, capacity-building, and M&E systems that have measurably improved maternal, neonatal, and disease-program outcomes at scale.',
 };
 
-type Expertise = [LucideIcon, string, string];
+export type Expertise = [LucideIcon, string, string];
 export const expertise: Expertise[] = [
   [Building2,'Health Systems Strengthening','Facility-based care transformation'],
   [HeartPulse,'Maternal, Newborn & Child Health','Program design and implementation'],
@@ -22,7 +22,7 @@ export const expertise: Expertise[] = [
   [Cpu,'Digital Health & Innovation','Operational intelligence'],
   [Handshake,'Donor Partnerships','USAID, BMGF, WHO-aligned'],
 ];
-type Experience = { role: string; org: string; place: string; date: string; pts: string[] };
+export type Experience = { role: string; org: string; place: string; date: string; pts: string[] };
 export const experience: Experience[] = [
   { role:'State Lead / Technical Officer', org:'JHPIEGO (TSU to Govt. of Gujarat, USAID RISE)', place:'Gujarat / New Delhi', date:'Jun 2022 – Aug 2024', pts:[
     'Steered PM-ABHIM health system strengthening strategy with the Government of Gujarat.',
@@ -51,7 +51,7 @@ export const experience: Experience[] = [
     'Supervised oncology pharmacology research and mentored postgraduate scholars.',
     'Organized health outreach linking academic research to care delivery.']},
 ];
-type Education = [string, string, string, string];
+export type Education = [string, string, string, string];
 export const education: Education[] = [
   ['MBA, International Health Management','ESCP Business School, Paris/London','Sep 2024 – Jul 2026','GMAT Focus 715 (99th percentile)'],
   ['Master of Public Health','Indian Institute of Public Health, Gandhinagar','Aug 2015 – Jul 2017',''],
@@ -62,7 +62,7 @@ export const education: Education[] = [
 ];
 export const skills = ['SPSS','SAS','Epi-Info','MS Excel / Word / PPT','Google Data Studio','Hindi (Native)','English (Proficient)','French (Beginner)','Member, State Public Health Observation Team (SPOT), NCDC'];
 
-type Metric = { from?: number; to: number; suffix?: string; label: string };
+export type Metric = { from?: number; to: number; suffix?: string; label: string };
 export const metrics: Metric[] = [
   { from:18000, to:32000, label:'COVID-19 samples tested per day' },
   { from:38, to:87, suffix:'%', label:'Vaccination coverage' },
@@ -73,7 +73,7 @@ export const metrics: Metric[] = [
   { to:2000, suffix:'+', label:'Officials, doctors and nurses trained' },
   { to:40, suffix:'%', label:'Better program tracking efficiency' },
 ];
-type CaseStudy = { icon: LucideIcon; title: string; focus: string; action: string; result: string };
+export type CaseStudy = { icon: LucideIcon; title: string; focus: string; action: string; result: string };
 export const cases: CaseStudy[] = [
   { icon:Wind, title:'Oxygen security and a state command centre', focus:'Strengthening the state emergency health response.', action:'Directed cross-sectoral partnerships and supported India’s first Health Control & Command Centre.', result:'134 PSA oxygen plants and a stronger emergency response ecosystem.' },
   { icon:Syringe, title:'COVID-19 testing and vaccination', focus:'Scaling testing capacity and vaccination coverage.', action:'Expanded testing and vaccination delivery and put ICU quality-monitoring systems in place.', result:'Testing 18,000 to 32,000 samples/day; coverage 38% to 87%.' },
